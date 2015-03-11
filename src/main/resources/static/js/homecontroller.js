@@ -1,5 +1,5 @@
 app.controller('home', function($scope, $http) {
-    $http.get('/resource/').success(function(data) {
-        $scope.greeting = data;
+    $http.get('/api/currentuser/').success(function(data) {
+        $scope.user = data;
     })
 });
