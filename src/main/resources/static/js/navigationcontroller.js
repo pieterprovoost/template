@@ -9,7 +9,6 @@ app.controller('navigation', function($rootScope, $scope, $http, $location) {
     };
 
     var authenticate = function(callback) {
-
         $http.get('user').success(function(data) {
             if (data.name) {
                 $rootScope.authenticated = true;
@@ -21,7 +20,6 @@ app.controller('navigation', function($rootScope, $scope, $http, $location) {
             $rootScope.authenticated = false;
             callback && callback();
         });
-
     };
 
     authenticate();

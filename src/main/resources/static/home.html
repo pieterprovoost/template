@@ -1,10 +1,16 @@
-<h1>Welcome</h1>
-<div ng-show="authenticated">
-    <p>Username: {{user.username}}</p>
-    <p>First name: {{user.firstname}}</p>
-    <p>Last name: {{user.lastname}}</p>
-    <p>E-mail: {{user.email}}</p>
-</div>
-<div  ng-show="!authenticated">
-    <p>Login to see your information</p>
+<div class="row">
+    <div class="col-md-4">
+
+        <div ng-show="authenticated">
+            <p>Username: {{user.username}}</p>
+            <p>First name: {{user.firstname}}</p>
+            <p>Last name: {{user.lastname}}</p>
+            <p>E-mail: {{user.email}}</p>
+        </div>
+
+        <div  ng-show="!authenticated">
+            <p>Login to see your information</p>
+        </div>
+
+    </div>
 </div>

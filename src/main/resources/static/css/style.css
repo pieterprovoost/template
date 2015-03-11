@@ -11,3 +11,7 @@ html {
 .app {
     padding: 75px 15px;
 }
+
+label {
+    font-weight: normal !important;
+}
