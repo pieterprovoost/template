@@ -80,7 +80,7 @@ public class DemoApplication {
             LocalContainerEntityManagerFactoryBean factoryBean
                     = new LocalContainerEntityManagerFactoryBean();
             factoryBean.setDataSource(dataSource());
-            factoryBean.setPackagesToScan(new String[ ] { "be.pieterprovoost.demo.model" });
+            factoryBean.setPackagesToScan("be.pieterprovoost.demo.model");
             JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
             factoryBean.setJpaVendorAdapter(vendorAdapter);
             factoryBean.setJpaProperties(this.additionalProperties());
