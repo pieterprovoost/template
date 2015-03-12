@@ -15,6 +15,10 @@ public class UserService {
     @Autowired
     public UserRepository userRepository;
 
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
     public User findCurrentUser() {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
