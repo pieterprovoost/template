@@ -17,7 +17,7 @@ public class ApiController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/currentuser")
+    @RequestMapping("/user")
     public User user() {
         User user = userService.findCurrentUser();
         return user;
