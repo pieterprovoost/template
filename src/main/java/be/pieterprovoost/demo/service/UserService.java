@@ -23,10 +23,7 @@ public class UserService {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-
-        List<User> list = userRepository.findByUsername(name);
-
-        return list.get(0);
+        return userRepository.findByUsername(name);
 
     }
 
