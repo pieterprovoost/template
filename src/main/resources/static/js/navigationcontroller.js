@@ -8,6 +8,10 @@ app.controller('navigation', function($rootScope, $scope, $http, $location) {
         }
     };
 
+    // Tries to load a resource when the page is loaded to check if the user
+    // is already authenticated. Sets or unsets the authenticated flag.
+    // When called from login() the callback navigates to either home or login.
+
     var authenticate = function(callback) {
         $http.get('/api/user').success(function(data) {
             if (data.username) {
@@ -22,8 +26,8 @@ app.controller('navigation', function($rootScope, $scope, $http, $location) {
         });
     };
 
-    authenticate();
-    $scope.credentials = {};
+    // Sends the credentials and accepts a cookie in return.
+
     $scope.login = function() {
         $http.post('login', $.param($scope.credentials), {
             headers : {
@@ -45,6 +49,7 @@ app.controller('navigation', function($rootScope, $scope, $http, $location) {
             $rootScope.authenticated = false;
         })
     };
+
     $scope.logout = function() {
         $http.post('logout', {}).success(function() {
             $rootScope.authenticated = false;
@@ -53,4 +58,9 @@ app.controller('navigation', function($rootScope, $scope, $http, $location) {
             $rootScope.authenticated = false;
         });
     };
+
+    $scope.credentials = {};
+
+    authenticate();
+
 });

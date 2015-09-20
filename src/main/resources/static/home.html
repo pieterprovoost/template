@@ -2,14 +2,24 @@
     <div class="col-md-4">
 
         <div ng-show="authenticated">
-            <p>Username: {{user.username}}</p>
-            <p>First name: {{user.firstname}}</p>
-            <p>Last name: {{user.lastname}}</p>
-            <p>E-mail: {{user.email}}</p>
+            <p>Profile:</p>
+            <ul>
+                <li>Username: {{user.username}}</li>
+                <li>First name: {{user.firstname}}</li>
+                <li>Last name: {{user.lastname}}</li>
+                <li>E-mail: {{user.email}}</li>
+            </ul>
         </div>
 
         <div  ng-show="!authenticated">
-            <p>Login to see your information</p>
+            <p>Login to see your information.</p>
+        </div>
+
+        <div>
+            <p>Users:</p>
+            <ul>
+                <li ng-repeat="u in users">{{u.username}}</li>
+            </ul>
         </div>
 
     </div>

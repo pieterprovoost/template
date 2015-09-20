@@ -20,11 +20,9 @@ public class UserService {
     }
 
     public User findCurrentUser() {
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         return userRepository.findByUsername(name);
-
     }
 
 }

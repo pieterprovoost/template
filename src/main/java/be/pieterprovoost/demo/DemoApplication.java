@@ -39,9 +39,16 @@ public class DemoApplication {
         protected void configure(HttpSecurity http) throws Exception {
             http
                     .formLogin().and()
+
+                    // logout endpoint
+
                     .logout().and()
                     .authorizeRequests()
-                    .antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll().anyRequest()
+
+                    // Allow anonymous access to static resources. CSS and
+                    // JavaScript resource are accessible by default.
+
+                    .antMatchers("/index.html", "/home.html", "/login.html", "/", "/api/users").permitAll().anyRequest()
                     .authenticated().and()
                     .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
                     .csrf().csrfTokenRepository(csrfTokenRepository());
