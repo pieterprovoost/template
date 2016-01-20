@@ -1,19 +1,24 @@
 package be.pieterprovoost.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.hateoas.Identifiable;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="role")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id", scope=Role.class)
 public class Role implements Identifiable<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String username;
     private String role;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
 
     @Override
     public Integer getId() {
@@ -32,11 +37,11 @@ public class Role implements Identifiable<Integer> {
         this.role = role;
     }
 
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

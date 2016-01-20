@@ -16,12 +16,15 @@ app.controller('navigation', function($rootScope, $scope, $http, $location) {
         $http.get('/api/user').success(function(data) {
             if (data.username) {
                 $rootScope.authenticated = true;
+                $rootScope.user = data;
             } else {
                 $rootScope.authenticated = false;
+                $rootScope.user = null;
             }
             callback && callback();
         }).error(function() {
             $rootScope.authenticated = false;
+            $rootScope.user = null;
             callback && callback();
         });
     };
@@ -47,19 +50,31 @@ app.controller('navigation', function($rootScope, $scope, $http, $location) {
             $location.path("/login");
             $scope.error = true;
             $rootScope.authenticated = false;
+            $rootScope.user = null;
         })
     };
 
     $scope.logout = function() {
         $http.post('logout', {}).success(function() {
             $rootScope.authenticated = false;
+            $rootScope.user = null;
             $location.path("/home");
         }).error(function(data) {
             $rootScope.authenticated = false;
+            $rootScope.user = null;
         });
     };
 
-    $scope.credentials = {};
+    $rootScope.isAdmin = function() {
+        if ($rootScope.user) {
+            for (u in $rootScope.user.roles) {
+                if ($rootScope.user.roles[u].role == "admin") {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
 
     authenticate();
 
